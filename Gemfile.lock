@@ -14,8 +14,10 @@ GEM
       zeitwerk (~> 2.3)
     bcrypt (3.1.16)
     concurrent-ruby (1.1.9)
+    dotenv (2.8.1)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    line-bot-api (1.28.0)
     minitest (5.15.0)
     multi_json (1.15.0)
     mustermann (1.1.1)
@@ -52,6 +54,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 6.1)
   bcrypt
+  dotenv
+  line-bot-api
   pg (~> 1.2)
   rake (~> 13.0)
   sinatra (~> 2.1)
