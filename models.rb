@@ -1,2 +1,2 @@
-ActiveRecord::Base.establish_connection
+ActiveRecord::Base.establish_connection(:development)
 
