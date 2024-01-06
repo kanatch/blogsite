@@ -8,3 +8,7 @@ development:
 
 production:
   <<: *default
+  host: dpg-cmcjcg821fec73cr93h0-a
+  database: s_linetest
+  username: s_linetest_user
+  password: jbOOcSJGUHzjwx176abHs63dPDBMAKA9
