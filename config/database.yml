@@ -1,14 +1,14 @@
 default_env: &default
   adapter: postgresql
   encoding: unicode
-  database: c_line
+  database: s_linetest
 
 development:
   <<: *default
 
 production:
   <<: *default
-  host: dpg-cmcjcg821fec73cr93h0-a
-  database: s_linetest
-  username: s_linetest_user
-  password: jbOOcSJGUHzjwx176abHs63dPDBMAKA9
+  host: dpg-cmcklemd3nmc73dc1tb0-a
+  database: s_linetest_v3ad
+  username: s_linetest_v3ad_user
+  password: wiXVwmC7jopewtZvsnM9EjIH6W5S4s2p
