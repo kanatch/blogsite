@@ -22,10 +22,7 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    nio4r (2.7.0)
     pg (1.2.3)
-    puma (6.4.0)
-      nio4r (~> 2.0)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -48,6 +45,7 @@ GEM
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    webrick (1.8.1)
     zeitwerk (2.5.1)
 
 PLATFORMS
@@ -59,11 +57,11 @@ DEPENDENCIES
   dotenv
   line-bot-api
   pg (~> 1.2)
-  puma
   rake (~> 13.0)
   sinatra (~> 2.1)
   sinatra-activerecord (~> 2.0)
   sinatra-contrib (~> 2.1)
+  webrick (~> 1.7)
 
 RUBY VERSION
    ruby 3.0.0p0
