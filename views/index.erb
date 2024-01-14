@@ -1,3 +1,9 @@
+<form action="/send" method="post">
+    <input type="text" name="message">
+    <input type="submit" value="送信！">
+</form>
+
+
 <% unless @messages == nil %>
     <% @messages.each do |message| %>
         <h1><%= message.message %></h1>

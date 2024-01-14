@@ -59,3 +59,17 @@ get '/admin' do
   Messages.create(message: "わあ")
   redirect '/'
 end
+
+post '/send' do
+  
+    message = {
+    type: 'text',
+    text: params[:message]
+  }
+  response = client.broadcast(message)
+  p response
+  
+  Messages.create(message: params[:message])
+  
+  redirect '/'
+end
