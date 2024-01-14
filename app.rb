@@ -35,6 +35,12 @@ post '/callback' do
           text: event.message['text']
         }#くみたて
         client.reply_message(event['replyToken'], message) #送信
+        
+        
+        #dbへの登録
+        Messages.create(message: event.message['text'].to_s)
+        
+        
       end
     end
   end
@@ -43,5 +49,13 @@ end
 
 
 get '/' do
-    erb :index
+  if Messages.all.exists?
+    @messages = Messages.all
+  end
+  erb :index
+end
+
+get '/admin' do
+  Messages.create(message: "わあ")
+  redirect '/'
 end

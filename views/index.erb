@@ -1,0 +1,5 @@
+<% unless @messages == nil %>
+    <% @messages.each do |message| %>
+        <h1><%= message.message %></h1>
+    <% end %>
+<% end %>
