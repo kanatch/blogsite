@@ -11,3 +11,4 @@ gem 'rake', '~> 13.0'
 gem 'bcrypt'
 gem "dotenv"
 gem "line-bot-api"
+gem 'faye-websocket'

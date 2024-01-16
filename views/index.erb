@@ -9,3 +9,39 @@
         <h1><%= message.message %></h1>
     <% end %>
 <% end %>
+
+
+<script>
+      //接続によってプロトコル変更 /websocketに送信
+      if (location.protocol === 'https:') {
+        var ws = new WebSocket('wss://' + location.host + '/websocket');
+      } else {
+        var ws = new WebSocket('ws://' + location.host + '/websocket');
+      }
+      
+      //通信開始のトリガー
+      ws.onopen = function() {
+        console.log('connected');
+      };
+
+      //メッセージ受信時のトリガー
+      ws.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = document.createElement('div');
+        message.innerHTML = '<strong>' + data.message + '</strong> ';
+        document.querySelector('#messages').appendChild(message);
+      };
+
+      //通信切断時のトリガー
+      ws.onclose = function() {
+        console.log('disconnected');
+      };
+
+      //ボタンを押されたらwebsocket送信s
+      document.querySelector('button').addEventListener('click', function() {
+        var message = document.querySelector('input[name="message"]').value;
+        ws.send(JSON.stringify({
+          message: message
+        }));
+      });
+    </script>

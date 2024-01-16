@@ -5,6 +5,7 @@ require 'open-uri'
 require 'sinatra/json'
 Dotenv.load
 require './models'
+require 'faye/websocket'
 
 use Rack::Session::Cookie,
     secret: 'set_your_secret_key'
@@ -17,6 +18,52 @@ def client
     config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
   }
 end
+
+#クライアントの情報を :sockets に格納
+set :sockets, []
+
+
+get '/websocket' do
+  #WebSocketのリクエストか判別
+  if Faye::WebSocket.websocket?(request.env)
+    #ws変数にWebSocketの情報を格納
+    ws = Faye::WebSocket.new(request.env)
+    
+    #通信開始のトリガー
+    ws.on :open do |event|
+      settings.sockets << ws
+    end
+    
+    #イベント受信のトリガー
+    ws.on :message do |event|
+      #全てのクライアントに送信
+      settings.sockets.each do |socket|
+        socket.send(event.data)
+      end
+      
+      #受信メッセージをLINE送信
+      message = {
+        type: 'text',
+        text: event.data
+      }
+      response = client.broadcast(message)
+      p response
+      
+      Messages.create(message: event.data)
+    end
+    
+    #通信切断のトリガー
+    ws.on :close do |event|
+      #通信情報を削除して切断処理
+      ws = nil
+      settings.sockets.delete(ws)
+    end
+
+    ws.rack_response
+    
+  end
+end
+
 
 
 
@@ -41,6 +88,11 @@ post '/callback' do
         Messages.create(message: event.message['text'].to_s)
         
         
+        #すべてのクライアントに受け取ったメッセージを送信
+        settings.sockets.each do |socket|
+          socket.send(event.message['text'])
+        end
+        
       end
     end
   end
@@ -62,7 +114,7 @@ end
 
 post '/send' do
   
-    message = {
+  message = {
     type: 'text',
     text: params[:message]
   }
