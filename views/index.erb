@@ -27,12 +27,7 @@
 
       //メッセージ受信時のトリガー
       ws.onmessage = function(e) {
-    //     var data = try {
-		  //  JSON.parse(e.data);
-    //     } catch (error) {
-	   //     return e.data;
-    //     }
-        var data = e.data;
+        var data = isJson(e.data);
         var message = document.createElement('div');
         message.innerHTML = '<strong>' + data + '</strong> ';
         document.querySelector('#messages').appendChild(message);
@@ -43,7 +38,7 @@
         console.log('disconnected');
       };
 
-      //ボタンを押されたらwebsocket送信s
+      //ボタンを押されたらwebsocket送信
       document.getElementById('send').addEventListener('click', function() {
         var message = document.querySelector('input[name="message"]').value;
         ws.send(JSON.stringify({
@@ -51,4 +46,14 @@
         }));
         document.querySelector('input[name="message"]').value = '';
       });
+      
+      
+      function isJson(data){
+          try {
+        		JSON.parse(data);
+        	} catch (error) {
+        		return data;
+        	}
+        	return JSON.parse(data);
+      }
     </script>
