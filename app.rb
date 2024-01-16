@@ -36,6 +36,8 @@ get '/websocket' do
     
     #イベント受信のトリガー
     ws.on :message do |event|
+      mes = JSON.parse(event.data)
+      
       #全てのクライアントに送信
       settings.sockets.each do |socket|
         socket.send(event.data)
@@ -44,12 +46,11 @@ get '/websocket' do
       #受信メッセージをLINE送信
       message = {
         type: 'text',
-        text: event.data
+        text: mes["message"]
       }
       response = client.broadcast(message)
       p response
-      
-      Messages.create(message: event.data)
+      Messages.create(message: mes["message"])
     end
     
     #通信切断のトリガー
