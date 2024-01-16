@@ -1,7 +1,6 @@
-<form action="/send" method="post">
-    <input type="text" name="message">
-    <input type="submit" value="送信！">
-</form>
+<input type="text" name="message">
+<input type="submit" value="送信！" id="send">
+
 
 
 <% unless @messages == nil %>
@@ -9,6 +8,7 @@
         <h1><%= message.message %></h1>
     <% end %>
 <% end %>
+<div id="messages"></div>
 
 
 <script>
@@ -38,10 +38,11 @@
       };
 
       //ボタンを押されたらwebsocket送信s
-      document.querySelector('button').addEventListener('click', function() {
+      document.getElementById('send').addEventListener('click', function() {
         var message = document.querySelector('input[name="message"]').value;
         ws.send(JSON.stringify({
           message: message
         }));
+        message = "";
       });
     </script>
