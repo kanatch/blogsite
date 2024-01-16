@@ -88,12 +88,12 @@ post '/callback' do
         #dbへの登録
         Messages.create(message: event.message['text'].to_s)
         
-        
+        puts "開始"
         #すべてのクライアントに受け取ったメッセージを送信
         settings.sockets.each do |socket|
           socket.send(event.message['text'])
         end
-        
+        puts "完了"
       end
     end
   end
