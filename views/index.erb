@@ -27,7 +27,7 @@
 
       //メッセージ受信時のトリガー
       ws.onmessage = function(e) {
-        var data = isJson(e.data);
+        var data = e.data
         var message = document.createElement('div');
         message.innerHTML = '<strong>' + data + '</strong> ';
         document.querySelector('#messages').appendChild(message);
