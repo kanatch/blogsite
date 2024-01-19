@@ -50,10 +50,10 @@
       
       function isJson(data){
           try {
-        		JSON.parse(data)["message"];
+        		JSON.parse(data);
         	} catch (error) {
         		return data;
         	}
-        	return JSON.parse(data);
+        	return JSON.parse(data)["message"];
       }
     </script>
