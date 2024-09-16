@@ -112,6 +112,12 @@ post '/callback' do
           settings.sockets.each do |socket|
             socket.send("datw")
           end
+        
+        elsif event.message['text'] == "きょうほん" || event.message['text'] == "キョウホン" || event.message['text'] == "教本" || event.message['text'] == "狂奔"
+          
+          settings.sockets.each do |socket|
+            socket.send("pomad")
+          end
           
         elsif event.message['text'] == "めかぶ" || event.message['text'] == "メカブ" || event.message['text'] == "雌株"
           
@@ -213,7 +219,7 @@ get '/' do
   # if Messages.all.exists?
   #   @messages = Messages.all
   # end
-  session[:point] = 1
+  session[:point] = 0
   erb :index
 end
 
@@ -227,13 +233,13 @@ get '/panel/:id' do
   puts session[:point]
   puts "---"
   if params[:id] == "1" || params[:id] == 1
-    if session[:point] == 1 || session[:point] == 6 || session[:point] == 8 || session[:point] == 9 || session[:point] == 10 || session[:point] == 15
+    if session[:point] == 0 || session[:point] == 6 || session[:point] == 8 || session[:point] == 9 || session[:point] == 10 || session[:point] == 15
       session[:point] = session[:point] + 1
     else
-      session[:point] = 1
+      session[:point] = 0
     end
   elsif params[:id] == "2" || params[:id] == 2
-    if session[:point] == 3 || session[:point] == 4 || session[:point] == 7 || session[:point] == 12 || session[:point] == 16
+    if session[:point] == 2 || session[:point] == 3 || session[:point] == 7 || session[:point] == 12 || session[:point] == 16 || session[:point] == 5
       session[:point] = session[:point] + 1
     elsif session[:point] == 17
       
@@ -247,13 +253,13 @@ get '/panel/:id' do
       
       
     else
-      session[:point] = 1
+      session[:point] = 0
     end
   elsif params[:id] == "3" || params[:id] == 3
-    if session[:point] == 2 || session[:point] == 5 || session[:point] == 11 || session[:point] == 13 || session[:point] == 14
+    if session[:point] == 1 || session[:point] == 4 || session[:point] == 11 || session[:point] == 13 || session[:point] == 14
       session[:point] = session[:point] + 1
     else
-      session[:point] = 1
+      session[:point] = 0
     end
   end
   puts "---"
