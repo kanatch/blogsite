@@ -1,52 +1,214 @@
 <div class="main">
   <div class="top">
-    <div class="panel" id="panel1">
-    </div>
-    <div class="panel" id="panel2">
-    </div>
-    <div class="panel" id="panel3">
-    </div>
+    <form class="panel1-form" action="/panel/1" method="GET" name="panel1">
+        <button type="submit" id="panel1-form">
+            <div class="panel" id="panel1">
+            </div>
+        </button>
+    </form>
+    <form class="panel1-form" action="/panel/2" method="GET" name="panel2">
+        <button type="submit" id="panel2-form">
+            <div class="panel" id="panel2">
+            </div>
+        </button>
+    </form>
+    <form class="panel1-form" action="/panel/3" method="GET" name="panel3">
+        <button type="submit" id="panel3-form">
+            <div class="panel" id="panel3">
+            </div>
+        </button>
+    </form>
   </div>
 </div>
 
 
 <script>
-    //接続によってプロトコル変更 websocketに送信
-    if (location.protocol === 'https:') {
-        var ws = new WebSocket('wss://' + location.host + '/websocket');
-    } else {
-        var ws = new WebSocket('ws://' + location.host + '/websocket');
-    }
+    console.log(<%= session[:point] %>);
+    // // 接続によってプロトコル変更 websocketに送信
+    // if (location.protocol === 'https:') {
+    //     var ws = new WebSocket('wss://' + location.host + '/websocket');
+    // } else {
+    //     var ws = new WebSocket('ws://' + location.host + '/websocket');
+    // }
       
-    //通信開始のトリガー
-    ws.onopen = function() {
-        console.log('connected');
-    };
+    // function connect() {
+    //     if (location.protocol === 'https:') {
+    //         var ws = new WebSocket('wss://' + location.host + '/websocket');
+    //     } else {
+    //         var ws = new WebSocket('ws://' + location.host + '/websocket');
+    //     }
+    // };
+     
+      
+    // //通信開始のトリガー
+    // ws.onopen = function() {
+    //     console.log('connected');
+    // };
 
-    //メッセージ受信時のトリガー
-    ws.onmessage = function(e) {
-        var data = isJson(e.data);
-        if (data == "pop"){
-            change1();
+    // //メッセージ受信時のトリガー
+    // ws.onmessage = function(e) {
+    //     var data = isJson(e.data);
+    //     if (data == "creepynuts"){
+    //         change3();
+    //     };
+    //     if (data == "qai"){
+    //         change3();
+    //     };
+    //     if (data == "riric"){
+    //         change1();
+    //     };
+    //     if (data == "panic"){
+    //         change1();
+    //     };
+    //     if (data == "kick"){
+    //         change2();
+    //     };
+    //     if (data == "type"){
+    //         change3();
+    //     };
+    //     if (data == "jaff"){
+    //         change2();
+    //     };
+    //     if (data == "vods"){
+    //         change3();
+    //     };
+    //     if (data == "pop"){
+    //         change1();
+    //     };
+    //     if (data == "lads"){
+    //         change1();
+    //     };
+    //     if (data == "mote"){
+    //         change3();
+    //     };
+    //     if (data == "dites"){
+    //         change2();
+    //     };
+    //     if (data == "datw"){
+    //         change3();
+    //     };
+    //     if (data == "trip"){
+    //         change2();
+    //     };
+    //     if (data == "gods"){
+    //         change1();
+    //     };
+    //     if (data == "wide"){
+    //         change2();
+    //     };
+    //     if (data == "lol"){
+    //         change1();
+    //     };
+    //     // var message = document.createElement('div');
+    //     // message.innerHTML = '<strong>' + data + '</strong> ';
+    //     // document.querySelector('#messages').appendChild(message);
+    // };
+
+    // //通信切断時のトリガー
+    // ws.onclose = function() {
+    //     console.log('disconnected');
+    //     //勝手に切断されたときにwsをリセットして再接続
+    //     ws = null;
+    //     open_socket();
+    // };
+    open_socket();
+    
+    
+    //再接続用function
+    function open_socket(){
+        if (location.protocol === 'https:') {
+            var ws = new WebSocket('wss://' + location.host + '/websocket');
+        } else {
+            var ws = new WebSocket('ws://' + location.host + '/websocket');
+        }
+        //通信開始のトリガー
+        ws.onopen = function() {
+            console.log('connected');
         };
-        // var message = document.createElement('div');
-        // message.innerHTML = '<strong>' + data + '</strong> ';
-        // document.querySelector('#messages').appendChild(message);
-    };
-
-    //通信切断時のトリガー
-    ws.onclose = function() {
-        console.log('disconnected');
+    
+        //メッセージ受信時のトリガー
+        ws.onmessage = function(e) {
+            var data = isJson(e.data);
+            if (data == "creepynuts"){
+                change3();
+            };
+            if (data == "qai"){
+                change3();
+            };
+            if (data == "riric"){
+                change1();
+            };
+            if (data == "panic"){
+                change1();
+            };
+            if (data == "kick"){
+                change2();
+            };
+            if (data == "type"){
+                change3();
+            };
+            if (data == "jaff"){
+                change2();
+            };
+            if (data == "vods"){
+                change3();
+            };
+            if (data == "pop"){
+                change1();
+            };
+            if (data == "lads"){
+                change1();
+            };
+            if (data == "mote"){
+                change3();
+            };
+            if (data == "dites"){
+                change2();
+            };
+            if (data == "datw"){
+                change3();
+            };
+            if (data == "trip"){
+                change2();
+            };
+            if (data == "gods"){
+                change1();
+            };
+            if (data == "wide"){
+                change2();
+            };
+            if (data == "lol"){
+                change1();
+            };
+            // var message = document.createElement('div');
+            // message.innerHTML = '<strong>' + data + '</strong> ';
+            // document.querySelector('#messages').appendChild(message);
+        };
+    
+        //通信切断時のトリガー
+        ws.onclose = function() {
+            console.log('disconnected');
+            ws = null;
+            if (location.protocol === 'https:') {
+                var ws = new WebSocket('wss://' + location.host + '/websocket');
+            } else {
+                var ws = new WebSocket('ws://' + location.host + '/websocket');
+            }
+            //このfunctionを再帰処理
+            open_socket()
+        };
     };
 
     //ボタンを押されたらwebsocket送信
-    // document.getElementById('send').addEventListener('click', function() {
-    //     var message = document.querySelector('input[name="message"]').value;
-    //     ws.send(JSON.stringify({
-    //       message: message
-    //     }));
-    //     document.querySelector('input[name="message"]').value = '';
-    // });
+    document.getElementById('panel1-form').addEventListener('click', function() {
+        click1();
+    });
+    document.getElementById('panel2-form').addEventListener('click', function() {
+        click2();
+    });
+    document.getElementById('panel3-form').addEventListener('click', function() {
+        click3();
+    });
       
       
     function isJson(data){
@@ -63,6 +225,41 @@
         document.getElementById("panel1").style.background = "red";
         setTimeout(function () {
           document.getElementById("panel1").style.background = "rgb(244, 244, 220)";
+        }, 1000);
+    }
+    
+    function change2(){
+        document.getElementById("panel2").style.background = "red";
+        setTimeout(function () {
+          document.getElementById("panel2").style.background = "rgb(244, 244, 220)";
+        }, 1000);
+    }
+    
+    function change3(){
+        document.getElementById("panel3").style.background = "red";
+        setTimeout(function () {
+          document.getElementById("panel3").style.background = "rgb(244, 244, 220)";
+        }, 1000);
+    }
+    
+    function click1(){
+        document.getElementById("panel1").style.background = "green";
+        setTimeout(function () {
+          document.getElementById("panel1").style.background = "rgb(244, 244, 220)";
+        }, 1000);
+    }
+    
+    function click2(){
+        document.getElementById("panel2").style.background = "green";
+        setTimeout(function () {
+          document.getElementById("panel2").style.background = "rgb(244, 244, 220)";
+        }, 1000);
+    }
+    
+    function click3(){
+        document.getElementById("panel3").style.background = "green";
+        setTimeout(function () {
+          document.getElementById("panel3").style.background = "rgb(244, 244, 220)";
         }, 1000);
     }
 </script>
