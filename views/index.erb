@@ -1,59 +1,128 @@
-<input type="text" name="message">
-<input type="submit" value="送信！" id="send">
-
-
-
-<% unless @messages == nil %>
-    <% @messages.each do |message| %>
-        <br>
-        <strong><%= message.message %></strong>
-    <% end %>
-<% end %>
-<div id="messages"></div>
+<div class="main">
+  <div class="top">
+    <div class="panel" id="panel1">
+    </div>
+    <div class="panel" id="panel2">
+    </div>
+    <div class="panel" id="panel3">
+    </div>
+  </div>
+</div>
 
 
 <script>
-      //接続によってプロトコル変更 /websocketに送信
-      if (location.protocol === 'https:') {
+    //接続によってプロトコル変更 websocketに送信
+    if (location.protocol === 'https:') {
         var ws = new WebSocket('wss://' + location.host + '/websocket');
-      } else {
+    } else {
         var ws = new WebSocket('ws://' + location.host + '/websocket');
-      }
+    }
       
-      //通信開始のトリガー
-      ws.onopen = function() {
+    //通信開始のトリガー
+    ws.onopen = function() {
         console.log('connected');
-      };
+    };
 
-      //メッセージ受信時のトリガー
-      ws.onmessage = function(e) {
+    //メッセージ受信時のトリガー
+    ws.onmessage = function(e) {
         var data = isJson(e.data);
-        var message = document.createElement('div');
-        message.innerHTML = '<strong>' + data + '</strong> ';
-        document.querySelector('#messages').appendChild(message);
-      };
+        if (data == "pop"){
+            change1();
+        };
+        // var message = document.createElement('div');
+        // message.innerHTML = '<strong>' + data + '</strong> ';
+        // document.querySelector('#messages').appendChild(message);
+    };
 
-      //通信切断時のトリガー
-      ws.onclose = function() {
+    //通信切断時のトリガー
+    ws.onclose = function() {
         console.log('disconnected');
-      };
+    };
 
-      //ボタンを押されたらwebsocket送信
-      document.getElementById('send').addEventListener('click', function() {
-        var message = document.querySelector('input[name="message"]').value;
-        ws.send(JSON.stringify({
-          message: message
-        }));
-        document.querySelector('input[name="message"]').value = '';
-      });
+    //ボタンを押されたらwebsocket送信
+    // document.getElementById('send').addEventListener('click', function() {
+    //     var message = document.querySelector('input[name="message"]').value;
+    //     ws.send(JSON.stringify({
+    //       message: message
+    //     }));
+    //     document.querySelector('input[name="message"]').value = '';
+    // });
       
       
-      function isJson(data){
-          try {
-        		JSON.parse(data);
-        	} catch (error) {
-        		return data;
-        	}
-        	return JSON.parse(data)["message"];
-      }
-    </script>
+    function isJson(data){
+        try {
+    		JSON.parse(data);
+    	} catch (error) {
+    		return data;
+    	}
+    	return JSON.parse(data)["message"];
+    }
+    
+    
+    function change1(){
+        document.getElementById("panel1").style.background = "red";
+        setTimeout(function () {
+          document.getElementById("panel1").style.background = "rgb(244, 244, 220)";
+        }, 1000);
+    }
+</script>
+
+<!--<input type="text" name="message">-->
+<!--<input type="submit" value="送信！" id="send">-->
+
+
+
+<!--</% unless @messages == nil %>-->
+<!--    </% @messages.each do |message| %>-->
+<!--        <br>-->
+<!--        <strong></%= message.message %></strong>-->
+<!--    </% end %>-->
+<!--</% end %>-->
+<!--<div id="messages"></div>-->
+
+
+<!--<script>-->
+      <!--//接続によってプロトコル変更 /websocketに送信-->
+<!--      if (location.protocol === 'https:') {-->
+<!--        var ws = new WebSocket('wss://' + location.host + '/websocket');-->
+<!--      } else {-->
+<!--        var ws = new WebSocket('ws://' + location.host + '/websocket');-->
+<!--      }-->
+      
+      <!--//通信開始のトリガー-->
+<!--      ws.onopen = function() {-->
+<!--        console.log('connected');-->
+<!--      };-->
+
+      <!--//メッセージ受信時のトリガー-->
+<!--      ws.onmessage = function(e) {-->
+<!--        var data = isJson(e.data);-->
+<!--        var message = document.createElement('div');-->
+<!--        message.innerHTML = '<strong>' + data + '</strong> ';-->
+<!--        document.querySelector('#messages').appendChild(message);-->
+<!--      };-->
+
+      <!--//通信切断時のトリガー-->
+<!--      ws.onclose = function() {-->
+<!--        console.log('disconnected');-->
+<!--      };-->
+
+      <!--//ボタンを押されたらwebsocket送信-->
+<!--      document.getElementById('send').addEventListener('click', function() {-->
+<!--        var message = document.querySelector('input[name="message"]').value;-->
+<!--        ws.send(JSON.stringify({-->
+<!--          message: message-->
+<!--        }));-->
+<!--        document.querySelector('input[name="message"]').value = '';-->
+<!--      });-->
+      
+      
+<!--      function isJson(data){-->
+<!--          try {-->
+<!--        		JSON.parse(data);-->
+<!--        	} catch (error) {-->
+<!--        		return data;-->
+<!--        	}-->
+<!--        	return JSON.parse(data)["message"];-->
+<!--      }-->
+<!--    </script>-->

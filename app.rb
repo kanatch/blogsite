@@ -78,22 +78,32 @@ post '/callback' do
   events.each do |event|
     if event.is_a?(Line::Bot::Event::Message) #メッセージイベントかどうか
       if event.type === Line::Bot::Event::MessageType::Text #テキストメッセージかどうか
-        message = {
-          type: 'text',
-          text: event.message['text']
-        }#くみたて
-        client.reply_message(event['replyToken'], message) #送信
+        puts event.message['text']
+        if event.message['text'] == "マト" || event.message['text'] == "まと" || event.message['text'] == "的"
+          puts "まと！！"
+          settings.sockets.each do |socket|
+            socket.send("pop")
+          end
+        
+        # elsif event.message['text'] == "マト" || event.message['text'] == "まと" || event.message['text'] == "的"
+          
+        end
+        # message = {
+          # type: 'text',
+          # text: event.message['text']
+        # }#くみたて
+        # client.reply_message(event['replyToken'], message) #送信
         
         
         #dbへの登録
-        Messages.create(message: event.message['text'].to_s)
+        # Messages.create(message: event.message['text'].to_s)
         
-        puts "開始"
+        # puts "開始"
         #すべてのクライアントに受け取ったメッセージを送信
-        settings.sockets.each do |socket|
-          socket.send(event.message['text'])
-        end
-        puts "完了"
+        # settings.sockets.each do |socket|
+        #   socket.send(event.message['text'])
+        # end
+        # puts "完了"
       end
     end
   end
@@ -102,9 +112,9 @@ end
 
 
 get '/' do
-  if Messages.all.exists?
-    @messages = Messages.all
-  end
+  # if Messages.all.exists?
+  #   @messages = Messages.all
+  # end
   erb :index
 end
 
