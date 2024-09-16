@@ -1,4 +1,4 @@
-ActiveRecord::Base.establish_connection
+# ActiveRecord::Base.establish_connection
 
-class Messages < ActiveRecord::Base
-end
+# class Messages < ActiveRecord::Base
+# end
