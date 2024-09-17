@@ -246,7 +246,7 @@ get '/panel/:id' do
       
       message = {
         type: 'text',
-        text: "誰かがサイトの謎を解き明かした！ next.. https://kanatch.netlify.app/"
+        text: "誰かがサイトの謎を解き明かした！ next.. https://kmystery1031.netlify.app/"
       }
       response = client.broadcast(message)
       p response
