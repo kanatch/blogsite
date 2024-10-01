@@ -273,9 +273,7 @@ get '/panel/:id' do
 end
 
 
-get '/go' do
-  redirect_to 'https://lin.ee/1uc2ZsL' #LINEのURLいれよる
-end
+
 
 
 
