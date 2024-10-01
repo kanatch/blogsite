@@ -228,6 +228,10 @@ get '/admin' do
   redirect '/'
 end
 
+get '/NA8jy9x6cFw'do
+  erb :kakusi
+end
+
 get '/panel/:id' do
   puts "---"
   puts session[:point]
@@ -246,7 +250,7 @@ get '/panel/:id' do
       
       message = {
         type: 'text',
-        text: "誰かがサイトの謎を解き明かした！ next.. https://kmystery1031.netlify.app/"
+        text: "誰かがサイトの謎を解き明かした！ final..? https://kmysterys1031.netlify.app/"
       }
       response = client.broadcast(message)
       p response
@@ -266,4 +270,56 @@ get '/panel/:id' do
   puts session[:point]
   puts "---"
   erb :index
+end
+
+
+get '/go' do
+  redirect_to 'https://lin.ee/1uc2ZsL' #LINEのURLいれよる
+end
+
+
+
+get '/another/question' do
+  session[:another] = 0
+  erb :another
+end
+
+
+get '/panel/another/:id' do
+  puts session[:another]
+  if params[:id] == "1" || params[:id] == 1
+    if session[:another] == 0 || session[:another] == 4 || session[:another] == 5
+      session[:another] = session[:another] + 1
+    else
+      session[:another] = 0
+    end
+  elsif params[:id] == "2" || params[:id] == 2
+    if session[:another] == 1 || session[:another] == 2
+      session[:another] = session[:another] + 1
+    else
+      session[:another] = 0
+    end
+  elsif params[:id] == "3" || params[:id] == 3
+    if session[:another] == 6
+      session[:another] = session[:another] + 1
+    elsif session[:another] == 8
+      puts "clear"
+      message = {
+        type: 'text',
+        text: "誰かがanother storyを解き明かした！ final.. https://kmysterys1031-another.netlify.app/"
+      }
+      response = client.broadcast(message)
+      p response
+    else
+      session[:another] = 0
+    end
+  elsif params[:id] == "4" || params[:id] == 4
+    if session[:another] == 3 || session[:another] == 7
+      session[:another] = session[:another] + 1
+    else
+      session[:another] = 0
+    end
+  end
+  puts session[:another]
+  erb :another
 end
