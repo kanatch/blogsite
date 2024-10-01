@@ -19,7 +19,7 @@ def client
   }
 end
 
-#クライアントの情報を :sockets に格納
+#クライアントの情報を :sockets に格納a
 set :sockets, []
 
 
