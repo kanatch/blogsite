@@ -321,3 +321,10 @@ get '/panel/another/:id' do
   puts session[:another]
   erb :another
 end
+
+post '/minecraft' do
+  settings.sockets.each do |socket|
+    socket.send("pomad")
+  end
+  "good"
+end
