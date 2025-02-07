@@ -76,6 +76,10 @@ get '/' do
   erb :top
 end
 
+get '/trend' do
+  erb :trend
+end
+
 post '/minecraft' do
   settings.sockets.each do |socket|
     socket.send("pomad")
