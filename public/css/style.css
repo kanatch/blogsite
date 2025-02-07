@@ -307,6 +307,7 @@ footer a {
 .menu ul li a {
   display: block;
   padding: 10px;
+  font-weight: 700;
   background: var(--theme-color1-default);
   color: var(--bg-color);
 }
@@ -390,7 +391,9 @@ footer a {
 /* 見出し */
 h1 {
   margin: 0;
-  font: 500 italic 5rem/1 "Jost", "Yu Gothic", Meiryo, "Hiragino Kaku Gothic ProN", sans-serif;
+  font-family: "Yomogi", serif;
+  font-weight: 400;
+  font-style: normal;
   color: var(--theme-color1-default);
 }
 h1 a {
@@ -413,7 +416,7 @@ h2 {
   margin-inline: auto;
   padding-block-start: 150px;
   padding-inline-end: 10px;
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   color: var(--theme-color1-default);
   letter-spacing: 10px;
 }
@@ -437,7 +440,7 @@ h3 {
   margin-inline: auto;
   padding-inline-end: 5px;
   color: var(--theme-color1-default);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   letter-spacing: 5px;
   z-index: 1;
 }
