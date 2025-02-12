@@ -388,6 +388,14 @@ footer a {
   content: "\f302";
 }
 
+
+.japanese-font{
+  font-family: "Yomogi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /* 見出し */
 h1 {
   margin: 0;
@@ -401,9 +409,8 @@ h1 a {
   color: var(--theme-color1-default);
   font-size:4.8rem;
   font-family: "Yomogi", serif;
-  font-weight: 400;
+  font-weight: 800;
   font-style: normal;
-  background-color: rgba(0, 0, 0, 0.07);
 }
 h1 a:hover {
   opacity: 0.5;

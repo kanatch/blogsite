@@ -17,8 +17,8 @@
             <ul>
                 <li><a href="#">ログイン</a></li>
                 <li><a href="#">投稿</a></li>
-                <li style="background-color:#b6b4b4;"><a>検索</a></li>
-                <li style="background-color:#ff808e;"><a href="#">トレンド</a></li>
+                <li><a style="background-color:#b6b4b4; cursor:not-allowed;">検索</a></li>
+                <li><a href="#" style="background-color:#ff808e; cursor:default;">トレンド</a></li>
             </ul>
         </nav>
     </header>
@@ -44,10 +44,25 @@
             </div>
         </article>
 
-        # ここにユーザー表示したい
-        <div style="border: 1px solid var(--theme-color1-default); background-color:var(--theme-color1-default);">
-            <div style="margin:15px; width:20%; aspect-ratio: 1/ 1; border-radius:50%; background-image:url(https://images.unsplash.com/photo-1560951022-00b231707a12?h=300); background-position: center; background-size:cover;"></div>   
-            <span>りんごちゃん</span>
+        <!-- ここにユーザー表示したい -->
+        <div style="border: 1px solid var(--theme-color1-default); background-color: var(--theme-color1-default); height: 12rem;">
+            <table style="height: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 110px;">
+                            <div style="margin:15px; height:80%; aspect-ratio: 1/ 1; border-radius:50%; background-image:url(https://images.unsplash.com/photo-1560951022-00b231707a12?h=300); background-position: center; background-size:cover;">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <span style="display: inline; margin: 10px; font-size:2.2rem; color:white; font-weight: 600;" class="japanese-font">りんごちゃん</span><br>
+                                <span style="margin:13px; color:white;" class="japanese-font">日常のいろいろについてブログしてます！</span><br>
+                                <span style="margin:13px; color:white;" class="japanese-font">日常のいろいろについてブログしてます！</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 
