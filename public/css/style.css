@@ -389,6 +389,11 @@ footer a {
 }
 
 
+form{
+  margin:0;
+}
+
+
 .japanese-font{
   font-family: "Yomogi", serif;
   font-weight: 400;
