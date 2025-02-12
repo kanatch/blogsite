@@ -12,13 +12,15 @@
 <body class="fix-menu">
     <!-- ヘッダー -->
     <header>
-        <h1 class="margin-top:100px;"><a>🐸ブロッグ🐸</a></h1>
+        <form method="get" name="titleform" action="/">
+            <h1 class="margin-top:100px;"><a href="javascript:titleform.submit()">🐸ブロッグ🐸</a></h1>
+        </form>
         <nav id="mainMenu" data-toggler="mainMenuToggler" class="menu">
             <ul>
                 <li><a href="#">ログイン</a></li>
                 <li><a href="#">投稿</a></li>
                 <li><a style="background-color:#b6b4b4; cursor:not-allowed;">検索</a></li>
-                <li><a href="#" style="background-color:#ff808e; cursor:default;">トレンド</a></li>
+                <li><form method="get" name="trendform" action="/trend"><a href="javascript:trendform.submit()" style="background-color:#ff808e; cursor:default;">トレンド</a></form></li>
             </ul>
         </nav>
     </header>
