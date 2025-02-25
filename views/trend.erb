@@ -28,6 +28,7 @@
 
     <!-- メイン -->
     <main>
+        <!-- 記事の部分 -->
         <article>
             <h2>カラオケで95点を超えるﾊﾅｼ</h2>
             <h3>🍎アップログ</h3>
@@ -47,25 +48,17 @@
         </article>
 
         <!-- ここにユーザー表示したい -->
-        <div style="border: 1px solid var(--theme-color1-default); background-color: var(--theme-color1-default); height: 12rem;">
-            <table style="height: 100%;">
-                <tbody>
-                    <tr>
-                        <td style="width: 110px;">
-                            <div style="margin:15px; height:80%; aspect-ratio: 1/ 1; border-radius:50%; background-image:url(https://images.unsplash.com/photo-1560951022-00b231707a12?h=300); background-position: center; background-size:cover;">
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <span style="display: inline; margin: 10px; font-size:2.2rem; color:white; font-weight: 600;" class="japanese-font">りんごちゃん</span><br>
-                                <span style="margin:13px; color:white;" class="japanese-font">日常のいろいろについてブログしてます！</span><br>
-                                <span style="margin:13px; color:white;" class="japanese-font">日常のいろいろについてブログしてます！</span>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <section class="user-profile">
+            <div class="user-avatar" style="background-image: url('https://images.unsplash.com/photo-1560951022-00b231707a12?h=300');"></div>
+            <div class="user-info">
+                <div class="user-name">りんごちゃん</div>
+                <p class="user-bio">日常のいろいろについてブログしてます！</p>
+                <div class="user-actions">
+                    <button class="follow-btn">フォロー</button>
+                    <span class="icons">✖️ 📡</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- フッター -->
@@ -75,8 +68,8 @@
         </div>
         <nav class="fixed-menu">
             <ul>
-                <li class="prev"><span style="background-color:#b6b4b4;"></span></li>
-                <li class="next"><span style="background-color:#b6b4b4;"></span></li>
+                <li class="prev"><span style="background-color:#b6b4b4; cursor:not-allow;"></span></li>
+                <li class="next"><span style="background-color:#b6b4b4; cursor:not-allow;"></span></li>
                 <li id="pageTop" class="pagetop"><button></button></li>
             </ul>
         </nav>
